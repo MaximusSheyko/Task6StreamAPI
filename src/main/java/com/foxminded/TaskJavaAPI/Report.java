@@ -16,9 +16,9 @@ public class Report {
         this.form = form;
     }
 
-    public String getReport(String pathToLog) throws IllegalAccessException, IOException {
+    public String getReport(String pathToLog) throws IllegalArgumentException, IOException {
         if (pathToLog == null || pathToLog.isEmpty ()){
-            throw new IllegalAccessException (ILLEGAL_EX);
+            throw new IllegalArgumentException (ILLEGAL_EX);
         }
 
         return form.getForm (fileReader.getAllLines (pathToLog));

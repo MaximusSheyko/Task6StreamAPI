@@ -21,7 +21,7 @@ public class FileReader {
     }
 
     public FileReader(){
-        this.pathToAbbreviation = "src/main/resources/abbreviations.txt" ;
+        this.pathToAbbreviation = "src/main/java/com/foxminded/TaskJavaAPI/resource/abbreviations.txt" ;
     }
 
     public void setPathToAbbreviation (String pathToAbbreviation) throws IOException {
@@ -39,16 +39,21 @@ public class FileReader {
         }
 
         DataFile data = new DataFile ();
-        Map<String, String> abbreviations = Files.readAllLines (Path.of (pathToAbbreviation))
-                .stream ()
-                .distinct()
-                .collect(Collectors.toMap((key) -> key.substring(0, 3),
-                        (values) -> values.substring(values.indexOf ("_") + 1)));
-
+        
         data.setLogLines (Files.readAllLines (Path.of (pathToLog)));
-        data.setAbbreviations (abbreviations);
-
+        getAllLinesAbbreviation(data);
+        
         return data;
+    }
+    
+    private void getAllLinesAbbreviation(DataFile data) throws IOException{
+	Map<String, String> abbreviations = Files.readAllLines (Path.of (pathToAbbreviation))
+	        .stream ()
+	        .distinct()
+	        .collect(Collectors.toMap((key) -> key.substring(0, 3),
+	                (values) -> values.substring(values.indexOf ("_") + 1)));
+	
+	data.setAbbreviations(abbreviations);
     }
 
 }

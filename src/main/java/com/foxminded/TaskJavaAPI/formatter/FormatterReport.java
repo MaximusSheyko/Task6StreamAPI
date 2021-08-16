@@ -11,9 +11,9 @@ public class FormatterReport {
     public static final String LINE_SEPARATOR = System.lineSeparator();
     public static final String VERTICAL_LINE = "|";
 
-    public String getForm(DataFile dataRacer) throws IllegalAccessException {
+    public String getForm(DataFile dataRacer) throws IllegalArgumentException {
 	if (dataRacer == null) {
-	    throw new IllegalAccessException(ILLEGAL_EX);
+	    throw new IllegalArgumentException(ILLEGAL_EX);
 	}
 
 	List<Racer> racers = getListRacers(dataRacer);
@@ -27,7 +27,8 @@ public class FormatterReport {
 
 	racers.stream().limit(topRacer)
 		.forEach(racer -> report.append(String.format("%-2d ", position.getAndIncrement()))
-			.append(String.format("%" + -maxLengthFieldName + "s", racer.getName())).append(VERTICAL_LINE)
+			.append(String.format("%" + -maxLengthFieldName + "s", racer.getName()))
+			.append(VERTICAL_LINE)
 			.append(String.format("%" + -maxLengthFieldCar + "s|%s%s", racer.getCar(), racer.getTime(),
 				LINE_SEPARATOR)));
 
@@ -35,7 +36,8 @@ public class FormatterReport {
 
 	racers.stream().skip(topRacer)
 		.forEach(racer -> report.append(String.format("%-2d ", position.getAndIncrement()))
-			.append(String.format("%" + -maxLengthFieldName + "s", racer.getName())).append(VERTICAL_LINE)
+			.append(String.format("%" + -maxLengthFieldName + "s", racer.getName()))
+			.append(VERTICAL_LINE)
 			.append(String.format("%" + -maxLengthFieldCar + "s|%s%s", racer.getCar(), racer.getTime(),
 				LINE_SEPARATOR)));
 
