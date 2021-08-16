@@ -19,9 +19,12 @@ class FileReaderTest {
     }
     
     @Test
-    void testGetAllLines_whenInputPathIsNull() {
+    void testGetAllLines_whenInputPathIsNullOrEmpty() {
 	assertThrows(IOException.class,
 		()->reader.getAllLines(null));
+	assertThrows(IOException.class,
+		()->reader.getAllLines(""));
+	
     }
 
 }
