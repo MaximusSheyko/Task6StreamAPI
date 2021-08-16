@@ -26,5 +26,15 @@ class FileReaderTest {
 		()->reader.getAllLines(""));
 	
     }
-
+    
+    @Test
+    void testGetAllLines_whenInputPathIsInvalid() {
+   	assertThrows(IOException.class,
+   		()->reader.getAllLines("sdsd/099"));
+    }
+    
+    @Test
+    void testGetAllLines_whenInputPathIsValid() throws IOException {
+   	assertNotNull(reader.getAllLines("src/main/java/com/foxminded/TaskJavaAPI/resource/start.log"));
+    }
 }
