@@ -46,7 +46,7 @@ class ReportTest {
     @Test 
     void testGetReport_whenInputPathIsNullOrEmpty() throws IllegalAccessException, IOException {	
 	assertThrows(IllegalArgumentException.class, () -> report.getReport(""));
-
+	assertThrows(IllegalArgumentException.class, () -> report.getReport(null));
     }
     
 
