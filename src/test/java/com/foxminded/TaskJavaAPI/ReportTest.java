@@ -22,12 +22,12 @@ import com.foxminded.TaskJavaAPI.parser.Parser;
 class ReportTest {
 
     @Mock
-    Parser parser;
+    private Parser parser;
     @Mock
-    FormatterReport format;
+    private FormatterReport format;
     
     @InjectMocks
-    Report report;
+    private Report report;
     
     @BeforeEach
     void init() {
