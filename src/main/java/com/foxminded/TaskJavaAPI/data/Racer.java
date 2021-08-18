@@ -38,5 +38,13 @@ public class Racer {
     public void setTime (String time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+	return "Racer [name=" + name + ", car=" + car + ", time=" + time + "]";
+    }
+    
+    
 }
+
 
