@@ -28,7 +28,7 @@ class FormatterReportTest {
     
     @Test
     void testGetForm_whenInDateIsValid() throws IllegalAccessException {
-	List<Racer> racers = new ArrayList();
+	List<Racer> racers = new ArrayList<Racer>();
 	
 	racers.add(new Racer("Make Horn", "PT1M12.434S","FERRARI"));
 	racers.add(new Racer("Maxim Smith", "PT1M4.415S", "MERCEDES"));
@@ -45,11 +45,4 @@ class FormatterReportTest {
 	assertNotNull(assertThrows(IllegalAccessException.class, 
 		() -> format.getForm(null)).getMessage());
     }
-    
-    
-    
-    
-    
-   
-
 }

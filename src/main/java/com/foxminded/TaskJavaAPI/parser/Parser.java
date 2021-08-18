@@ -12,9 +12,13 @@ import com.foxminded.TaskJavaAPI.data.Racer;
 public class Parser {
 
     private String patternDate = "yyyy-MM-dd_HH:mm:ss.SSS";
+    public static final String NPE_MESSAGE = "lists is null";
 
     public List<Racer> toParsingLogs(List<String> startLap, List<String>
             endLap, List<String> abbreviations) throws ParseException {
+	if(startLap == null || endLap == null || abbreviations == null) {
+	    throw new NullPointerException(NPE_MESSAGE);
+	}
         List<Racer> racers = new ArrayList<> ();
         Map<String, String> startDate = createMap (startLap);
         Map<String, String> endDate = createMap (endLap);
