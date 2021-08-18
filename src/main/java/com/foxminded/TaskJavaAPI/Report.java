@@ -1,27 +1,42 @@
 package com.foxminded.TaskJavaAPI;
 
-import com.foxminded.TaskJavaAPI.reader.*;
-import com.foxminded.TaskJavaAPI.formatter.*;
-
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.ParseException;
+import java.util.Arrays;
+import java.util.List;
+
+import com.foxminded.TaskJavaAPI.formatter.FormatterReport;
+import com.foxminded.TaskJavaAPI.parser.Parser;
 
 public class Report {
 
     public static final String ILLEGAL_EX = "Path is empty or null";
-    private FileReader fileReader;
+    private Parser parser;
     private FormatterReport form;
+    private List<String> linesStartLapLog;
+    private List<String> linesEndLapLog;
+    private List<String> linesFileAbbreviations;
 
-    public Report(FileReader fileReader, FormatterReport form){
-        this.fileReader = fileReader;
+    public Report(Parser parser, FormatterReport form){
+        this.parser = parser;
         this.form = form;
     }
 
-    public String getReport(String pathToLog) throws IllegalArgumentException, IOException {
-        if (pathToLog == null || pathToLog.isEmpty ()){
-            throw new IllegalArgumentException (ILLEGAL_EX);
+    public void writeFiles(String pathToLogStartLap, String pathToLogEndLap, String abbreviations){
+        try {
+            linesStartLapLog = Files.readAllLines ( Path.of (pathToLogStartLap));
+            linesEndLapLog = Files.readAllLines (Path.of (pathToLogEndLap));
+            linesFileAbbreviations = Files.readAllLines (Path.of (abbreviations));
+        }catch (IOException exception){
+            System.out.println (Arrays.toString (exception.getStackTrace ()));
         }
+    }
 
-        return form.getForm (fileReader.getAllLines (pathToLog));
+    public String getReport() throws ParseException, IllegalAccessException {
+        return form.getForm (parser.toParsingLogs (linesStartLapLog, linesEndLapLog,
+                    linesFileAbbreviations));
     }
 }
 
