@@ -25,16 +25,13 @@ public class FormatterReport {
 	racers = racers.stream().sorted(Comparator.comparing(Racer::getTime)).toList();
 	racers.stream()
 		.forEach(racer -> racer.setTime(racer.getTime().replace("PT", "").replace("M", ":").replace("S", "")));
-
 	racers.stream().limit(topRacer)
 		.forEach(racer -> report.append(String.format("%-2d ", position.getAndIncrement()))
 			.append(String.format("%" + -maxLengthFieldName + "s", racer.getName()))
 			.append(VERTICAL_LINE)
 			.append(String.format("%" + -maxLengthFieldCar + "s|%s%s", racer.getCar(), racer.getTime(),
 				LINE_SEPARATOR)));
-
 	report.append(String.format("%s", "-".repeat(maxLengthFieldCar + maxLengthFieldName) + LINE_SEPARATOR));
-
 	racers.stream().skip(topRacer)
 		.forEach(racer -> report.append(String.format("%-2d ", position.getAndIncrement()))
 			.append(String.format("%" + -maxLengthFieldName + "s", racer.getName()))
