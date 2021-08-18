@@ -5,6 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -41,12 +42,19 @@ class ReportTest {
 	report.getReport();
 	
 	verify(parser,times(1)).toParsingLogs(null, null, null);
-	verify(format, times(2)).getForm(parser.toParsingLogs(null, null, null));
+	verify(format, times(1)).getForm(parser.toParsingLogs(null, null, null));
     }
 
-    //@Test
-    void testWriteFiles() {
-	fail("Not yet implemented");
+    @Test
+    void testWriteFiles_whenInputPathIsInvalid() {
+	assertThrows(IOException.class, 
+		() -> report.writeFiles("232", "sd/p", "jkk"));
+    }
+    
+    @Test
+    void testWriteFiles_whenInputPathIsNull() {
+	assertThrows(NullPointerException.class, 
+		() -> report.writeFiles(null, null, null));
     }
 
 }
