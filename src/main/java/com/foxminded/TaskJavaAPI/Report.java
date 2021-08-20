@@ -15,7 +15,7 @@ public class Report {
     private Parser parser;
     private FormatterReport format;
     public static final String ILLEGAL_EXCEPTION_MESSAGE = "input path is null";
-    public static final String IOEXCEPTION_MESSAGE = "file not found";
+    public static final String IO_EXCEPTION_MESSAGE = "file not found";
     private List<String> linesStartLapLog;
     private List<String> linesEndLapLog;
     private List<String> linesFileAbbreviations;
@@ -33,7 +33,7 @@ public class Report {
         }catch(IllegalArgumentException exception) {
             throw new IllegalArgumentException(ILLEGAL_EXCEPTION_MESSAGE);
         }catch (IOException exception){
-            throw new IOException(IOEXCEPTION_MESSAGE);
+            throw new IOException(IO_EXCEPTION_MESSAGE);
         }
     }
 
