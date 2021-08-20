@@ -12,11 +12,10 @@ import com.foxminded.TaskJavaAPI.parser.Parser;
 
 public class Report {
 
-    public static final String ILLEGAL_EX = "Path is empty or null";
     private Parser parser;
     private FormatterReport form;
-    public static final String NPEXEPTION_MESS = "input path is null";
-    public static final String IOEXEPTION_MESS = "file not found";
+    public static final String ILLEGAL_EXCEPTION_MESSAGE = "input path is null";
+    public static final String IOEXCEPTION_MESSAGE = "file not found";
     private List<String> linesStartLapLog;
     private List<String> linesEndLapLog;
     private List<String> linesFileAbbreviations;
@@ -31,10 +30,10 @@ public class Report {
             linesStartLapLog = Files.readAllLines ( Path.of (pathToLogStartLap));
             linesEndLapLog = Files.readAllLines (Path.of (pathToLogEndLap));
             linesFileAbbreviations = Files.readAllLines (Path.of (abbreviations));
-        }catch(NullPointerException exception) {
-            throw new NullPointerException(NPEXEPTION_MESS);
+        }catch(IllegalArgumentException exception) {
+            throw new IllegalArgumentException(ILLEGAL_EXCEPTION_MESSAGE);
         }catch (IOException exception){
-            throw new IOException(IOEXEPTION_MESS);
+            throw new IOException(IOEXCEPTION_MESSAGE);
         }
     }
 

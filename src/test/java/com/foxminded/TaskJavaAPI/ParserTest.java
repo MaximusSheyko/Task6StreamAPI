@@ -17,7 +17,7 @@ import com.foxminded.TaskJavaAPI.parser.Parser;
 class ParserTest {
 
     private Parser parser;
-    public static final String NPE_MESSAGE = "lists is null";
+    public static final String ILLEGAL_MESSAGE = "lists is null";
     public static final String START_LAP_DATE = "SVF2018-05-24_12:02:58.917";
     public static final String END_LAP_DATE = "SVF2018-05-24_12:04:03.332";
     public static final String ABBREVATIONS = "SVF_Sebastian Vettel_FERRARI";
@@ -32,7 +32,7 @@ class ParserTest {
 	assertThrows(NullPointerException.class,
 		()->parser.toParsingLogs(null, null, null));
 	
-	assertEquals(NPE_MESSAGE, assertThrows(NullPointerException.class,
+	assertEquals(ILLEGAL_MESSAGE, assertThrows(IllegalArgumentException.class,
 		()->parser.toParsingLogs(null, null, null)).getMessage());
     }
     
