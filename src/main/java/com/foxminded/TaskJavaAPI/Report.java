@@ -13,7 +13,7 @@ import com.foxminded.TaskJavaAPI.parser.Parser;
 public class Report {
 
     private Parser parser;
-    private FormatterReport form;
+    private FormatterReport format;
     public static final String ILLEGAL_EXCEPTION_MESSAGE = "input path is null";
     public static final String IOEXCEPTION_MESSAGE = "file not found";
     private List<String> linesStartLapLog;
@@ -22,7 +22,7 @@ public class Report {
 
     public Report(Parser parser, FormatterReport form){
         this.parser = parser;
-        this.form = form;
+        this.format = form;
     }
 
     public void writeFiles(String pathToLogStartLap, String pathToLogEndLap, String abbreviations) throws IOException{
@@ -38,7 +38,7 @@ public class Report {
     }
 
     public String getReport() throws ParseException, IllegalAccessException {
-        return form.getForm (parser.toParsingLogs (linesStartLapLog, linesEndLapLog,
+        return format.getForm (parser.toParsingLogs (linesStartLapLog, linesEndLapLog,
                     linesFileAbbreviations));
     }
 }
