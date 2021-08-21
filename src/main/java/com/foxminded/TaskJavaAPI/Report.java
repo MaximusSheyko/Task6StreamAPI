@@ -33,6 +33,7 @@ public class Report {
         }catch(IllegalArgumentException exception) {
             throw new IllegalArgumentException(ILLEGAL_EXCEPTION_MESSAGE);
         }catch (IOException exception){
+            exception.printStackTrace();
             throw new IOException(IO_EXCEPTION_MESSAGE);
         }
     }
