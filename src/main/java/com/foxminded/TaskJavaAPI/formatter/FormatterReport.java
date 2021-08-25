@@ -5,23 +5,26 @@ import com.foxminded.TaskJavaAPI.data.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class FormatterReport {
+public class FormatterReport implements Formatter<Racer> {
 
     private static final String ILLEGAL_EXCEPTION = "list is null";
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String VERTICAL_LINE = "|";
     private static final String EMPTY_CHAR = "";
     
+    @Override
     public String getForm(List<Racer> racers) throws IllegalArgumentException {
 	if (racers == null) {
 	    throw new IllegalArgumentException(ILLEGAL_EXCEPTION);
 	}
 
 	StringBuilder report = new StringBuilder();
-	int maxLengthFieldName = getMaxLengthLine(racers.stream()
+	int maxLengthFieldName = getMaxLengthLine(racers
+		.stream()
 		.map(Racer::getName)
 		.toList());
-	int maxLengthFieldCar = getMaxLengthLine(racers.stream()
+	int maxLengthFieldCar = getMaxLengthLine(racers
+		.stream()
 		.map(Racer::getCar)
 		.toList());
 	int topRacer = 15;
